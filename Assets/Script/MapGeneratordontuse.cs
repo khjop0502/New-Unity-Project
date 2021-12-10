@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapGenerator : MonoBehaviour
+public class MapGeneratordontuse : MonoBehaviour
 {
     public Transform tilePrefab;
     public Vector2 mapSize;
-    public List<List<int>> list;
 
     [Range(0,1)]
     public float outlinePercent;
@@ -27,12 +26,13 @@ public class MapGenerator : MonoBehaviour
         mapHolder.parent = transform;
         for (int x = 0; x < mapSize.x; x++)
         {
+            List<int> templist = new List<int>();
             for (int y = 0; y < mapSize.y; y++)
             {
                 float temp = x;
                 if (y % 2 == 0)
                 {
-                    temp += 0.5f;
+                    temp -= 0.5f;
                 }
                 Vector3 tilePosition = new Vector3(-mapSize.x / 2 + 0.5f + temp, 0, -mapSize.y / 2 + 0.5f + y * Mathf.Sqrt(3) / 2);
                 Transform newTile = Instantiate(tilePrefab, tilePosition, Quaternion.Euler(Vector3.right)) as Transform;
